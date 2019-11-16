@@ -1,6 +1,6 @@
 document.write('\
 \
-<link rel="stylesheet" href="menu.css"></link>\
+<link rel="stylesheet" href="/styles/menu.css"></link>\
 \
 \<ul class="topnav">\
 \
