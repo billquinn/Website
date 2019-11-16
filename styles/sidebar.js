@@ -16,22 +16,30 @@
 //  var captionText = document.getElementById("caption");
 //  captionText.innerHTML = element.alt;
 //}
-
+//
 
 document.write('\
 \
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>\
 <link rel="stylesheet" href="/styles/sidebar.css"></link>\
 \
-\<ul class="sideBar">\
+<nav class="w3-sidebar w3-indigo w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);">\
+<br></br>\
 \
 \
-<li class="logo">William Reed Quinn</li>\
 \
-<li><a href="/index.html">Home</a></li>\
-<li><a href="/about/index.html">About Me</a></li>\
-<li><a href="/cv/quinn-cv.pdf">CV</a></li>\
+<div class="w3-container">\
+<h3 class="w3-padding-64">William Reed Quinn</h3>\
+</div>\
 \
 \
-</ul>\
+<div class="w3-bar-block">\
+<a href="/about/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About Me</a>\
+<a href="/cv/quinn-cv.pdf" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">CV</a>\
+<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Github (in the works)</a>\
+</div>\
+\
+\
+\
+</nav>\
 ')
