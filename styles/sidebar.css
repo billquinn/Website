@@ -1,0 +1,23 @@
+
+ul.sideBar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #003782;
+}
+
+ul.sideBar li.logo {
+    float: left;
+    color: white;
+    font-size: 150%;
+    padding: 5px 12px;
+    font-family: "Arial Black", Gadget, sans-serif;
+
+}
+
+ul.sideBar li.a {
+    class: w3-bar-item, w3-button, w3-hover-white;
+}
+
+onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"
