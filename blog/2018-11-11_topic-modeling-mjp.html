@@ -1,0 +1,161 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="../styles/main.css" />
+        <link rel="stylesheet" href="../styles/menu.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    </head>
+
+    <body>
+        <header class="w3-indigo">
+            <script src="../styles/menu.js"></script>
+        </header>
+        <!-- !PAGE CONTENT! -->
+        <main role="main" class="w3-container">
+            <div class="main-body">
+                <h1 align="center">Computational Coda: Topic Modeling The MJP.</h1>
+
+                <div class="note" align="center">
+                    <p>This post briefly describes my reasoning for topic modeling <a
+                            href="http://modjourn.org/">The Modernist Journals Project</a> and
+                        explains some of the technical choices I made. For the R script, please look
+                        at my Github.</p>
+                </div>
+
+                <p>Topic modeling, in a simplified sense, can be imagined as a process that reads
+                    through a corpus twice. The first time the process finds topics in the corpus.
+                    Topics are sets of words that frequently appear together. Then, the process
+                    reads through the corpus again, assigning those topics to each document. The
+                    goal of topic modeling is to return significant topics, or the subject matter of
+                    documents.</p>
+
+                <p>In <q><a
+                            href="http://journalofdigitalhumanities.org/2-1/topic-modeling-and-figurative-language-by-lisa-m-rhody/"
+                            >Topic Modeling and Figurative Language</a>,</q> Lisa Marie Rhody
+                    describes topic modeling as someone trying to predict what their neighbors might
+                    pick up at the farmer's market based on past selections: <blockquote>Examining
+                        the quantities and varieties of produce in each basket, you could begin to
+                        predict not only the range of produce that might have been at the farmers’
+                        market but also the relative quantities. Over the course of sampling your
+                        neighbors’ baskets, you come to the conclusion that the selection of produce
+                        at the farmer’s market consists of 20% green apples, 20% red apples, 15%
+                        pears, 10% winter squash, 10% cantaloupe, 5% corn, 5% beans, 5% tomatoes and
+                        5% assorted other kinds of produce that were different enough from one
+                        another that it makes sense to just call them miscellaneous. As more
+                        neighbors arrive, with baskets to examine, you can refine your predictions
+                        about what the available selection of produce have been at the market.
+                    </blockquote> Although there's always room for error, topic modeling similarly
+                    guesses at what's in each document. After reading through a corpus, where it
+                    recognizes the different topics, topic modeling then tries to guess at what
+                    topics are in each document.</p>
+
+
+                <div class="container w3-center">
+                    <img class="w3-round zoom"
+                        src="../images/2018-11-11_topic-modeling-mjp/blei_topic-model.png" alt="" />
+                    <p>Image from David Blei's <q><a
+                                href="http://www.cs.columbia.edu/~blei/papers/Blei2012.pdf"
+                                >Probabilistic Topic Models</a></q></p>
+                </div>
+
+                <p>The image above from David Blei's article illustrates how topic models see a
+                    text. The model goes through texts highlighting words that it believes belong
+                    together as topics. The number of topics in a corpus is determined by the user.
+                    A document can have multiple, significant topics.</p>
+
+                <p>I've found that topic modeling has been an effective way for me to understand
+                    magazine culture. I chose to topic model, as opposed to other methods (such as
+                    stylometry or other methods based on term-document matrices), for two reasons.
+                    The first is rather straight forward. In my trial-and-error exploratory phase, I
+                    was getting better results. By better results, I simply mean that the results
+                    matched my expectations. Genres and magazines would cluster together as I
+                    anticipated.</p>
+
+                <p>The second reason I use topic modeling is because it captures a level of language
+                    that I am most interested in: subjects. Topic modeling tries to reconstruct what
+                    writers wrote about. The "what" of writing differs than the style or "how" texts
+                    are written, and this has certain implications for textual analysis.</p>
+
+                <p>Subject material is easy to change. Writers can write about different topics more
+                    easily than they can change how they write about those subjects. As I'll explain
+                    a little further down, the difficulty of changing your style makes style
+                    particularly good for discerning different authors through computational
+                    methods. That same feature, however, makes it difficult to determine when a
+                    writer changes her subject matter.</p>
+
+                <p>Topic modeling's attention to content rather than style makes it particularly
+                    useful for studying magazines and serialized print culture. Changing topics in
+                    magazines is somewhat akin to trending topics and hashtags in social media. It's
+                    one marker of cultural significance and signals what editors, writers, and
+                    readers seemed to care about. While stylistics captures aspects of writing that
+                    writers struggle to leave behind, topic models look at a level of textuality
+                    that is very easy to change.</p>
+
+                <p>Stylometry (the "how" of writing) was an early method for computational text
+                    analysis, in particular for authorship attribution (<q>Inference in an
+                        Authorship Problem,</q> Mosteller and Wallace). The success of stylometry is
+                    in its ability to identify authors by their use of seemingly insignficant words,
+                    especially prepositions. These words (often called stopwords) effectively
+                    differentiate <i>who</i> wrote what. Simon Fuller and James Sullivan use text
+                    analysis to explore authorship attribution in <q><a
+                            href="http://www.digitalhumanities.org/dhq/vol/11/1/000286/000286.html"
+                            >Structure over Style: Collaborative Authorship and the Revival of
+                            Literary Capitalism</a></q> (2017). Put another way, stylometry (and
+                    other methods that rely on word counts) became very good at guessing
+                    (identifying) different authors by the seemingly unimportant words they
+                    used—even when an author wrote about different subjects.</p>
+
+                <p>I think that the ability to (frequently) identify an author regardless of the
+                    subject has significance. It suggests, to me, that stylometry captures a level
+                    of language that is very difficult to change; that level of language persists
+                    within an author across whatever subject she writes about. There are, of course,
+                    some immediate exceptions to this conjecture. James Joyce's <i>Ulysses</i>
+                    exhibits a particularly unstable and volatile style within itself. Also, T.S.
+                    Eliot's <q>The Waste Land</q> is well-known for its many speakers, which <q><a
+                            href="http://hedothepolice.org/">He Do The Police</a></q>, a digital
+                    project, explores computationally. These are perhaps unique examples, though. In
+                            <q><a
+                            href="https://culturalanalytics.org/2018/11/measuring-modernist-novelty/"
+                            >Measuring Modernist Novelty</a>,</q> Laura McGrath, Devin Higgins, and
+                    Arend Hintze use computational text analysis to understand stylistic newness or
+                    novelty within texts. Other examples, swing in the opposite direction. In <q>‘A
+                        thing not beginning and not ending’: using digital tools to distant-read
+                        Gertrude Stein's <i>The Making of Americans</i>,</q> Tanya Clement uses
+                    distant reading to better understand the hyper-repetition in Stein's work
+                        (<i>Literary and Linguistic Computing</i>, 23.3, 2008).</p>
+
+                <p>My reason for topic modeling, then, is based on the common tendencies of magazine
+                    writers and seriality—not some sense that topic models are better than
+                    stylistics methods. While style is important, I've found topics to be more
+                    reliable and stronger signals of cultural change. Computational text analysis,
+                    however, involves a lot of moving pieces. There's the corpus, which can change
+                    as new documents are added, and the computation. Within each of those, there are
+                    even more options that can reshape the results—such as removing or keeping stopwords. While topic modeling works for
+                    me for now, it's possible that new developments, or even reconfigurations of old
+                    pieces, might be cause to revisit stylistics in the future.</p>
+            </div>
+        </main>
+        <footer class="row">
+            <div class="column">William Reed Quinn</div>
+            <div class="column"><img class="logo" src="../images/logos/Twitter_Logo_Blue.png"
+                    alt="Twitter logo" />@wi_quinn</div>
+            <div class="column">
+                <img class="logo" src="../images/logos/GitHub-Mark-32px.png" alt="Github logo" />
+                <a href="https://github.com/billquinn/">billquinn</a>
+            </div>
+        </footer>
+        <!-- End page content -->
+    </body>
+</html>
+<!-- 
+
+<div class="container w3-center">
+                    <img class="w3-round"
+                        src=""
+                        alt="" />
+                    <p>Caption</p>
+                </div>
+
+-->

@@ -1,0 +1,264 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="../styles/main.css" />
+        <link rel="stylesheet" href="../styles/menu.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    </head>
+
+    <body>
+        <header class="w3-indigo">
+            <script src="../styles/menu.js"></script>
+        </header>
+        <!-- !PAGE CONTENT! -->
+        <main role="main" class="w3-container">
+            <div class="main-body">
+                <h1 align="center">Doc2vec.</h1>
+                <h2 align="center">Part 2.</h2>
+
+                <p>This post continues from part 1, where I described doc2vec (how it works) and did
+                    some initial tests. I found that doc2vec was able to re-produce some
+                    expectations I had about the corpus from the <a
+                        href="http://modjourn.org/index.html">Modernist Journals Project</a>.
+                    Namely, different magazines and different genres used language slightly
+                    differently. When I modeled and visualized the entire corpus, the graph showed
+                    that magazines and genres clustered in expected ways. In this post, I use
+                    doc2vec to explore some of my research questions: can doc2vec track the gradual
+                    changes in cultural productions and do these changes reflect the tentative and
+                    shifting interests in serial print culture?</p>
+
+                <p>In the <a
+                        href="http://modjourn.org/render.php?id=1201882375609375&view=mjp_object"
+                        >October 1914</a> issue of <i>Poetry, a Magazine of Verse</i>, Harriet
+                    Monroe and Ezra Pound published opposing opinions on the relationship between
+                    the artist and audience. Ezra Pound’s opening salvo begins, <q>I have protested
+                        privately, and now I protest more openly, against the motto upon the cover
+                        of Poetry</q> (29). Referring specifically to a quotation from Walt
+                        Whitman—<q>To have great poets there must be great audiences too</q>—Pound
+                    lays out his well-known tract against the <q>rabble of ‘respectable’ people,</q>
+                    who might infect an individual’s genius. Harriet Monroe, on the other hand,
+                    dismisses Pound’s world of <q>immediate audiences</q> reminiscent of the
+                        <q>stay-at-home aristocratic age.</q> She argues <q>Art is not an isolated
+                        phenomenon of genius, but the expression of a reciprocal relation between
+                        the artist and his public</q> (31—32). The debate between Monroe and Pound
+                    now marks a well-known moment in modernist studies: Pound would declare Poetry a
+                        <q>meal-ticket</q> for mediocre artists and join like-minded editors at
+                        <i>The Little Review</i> while Monroe would continue her successful
+                    editorship without him.</p>
+                
+                <p>Leeroy Titus Weeks, a reader who wrote to the magazine and whose letter was
+                    published, sides with Monroe and challenges Pound's belief in individuality and
+                    pure originality. With playful sarcasm, Weeks stands in <q>bewilderment before
+                        the vast knowledge of Mr. Ezra Pound,</q> who holds <q>final judgment</q>
+                    for literary works at <q>his study table</q> (48). Pound, <q>full of fust and
+                        ferment,</q> rails against the literary tradition as <q>the apostle of
+                        discontent</q> and, in doing so, sets himself apart as tastemaker of <q>the
+                        New Beauty.</q> The <q>new</q> beauty, Weeks argues, is never entirely new.
+                    Weeks writes, <q>like every new growth of the coral islands, simply rising out
+                        of and upon the old beauty,</q> the new beauty <q>never shakes itself loose
+                        from the old.</q> Not only does newness emerge from the old, but great
+                    literary works grow from the bad. <q>Without a vast field of mediocre
+                        poetry,</q> Weeks writes, <q>we could have no literature. Mediocre poetry is
+                        the compost heap on which grow Shakespeares</q> (49).</p>
+                
+                
+                <div class="container w3-center">
+                    <img class="w3-round zoom"
+                        src="../images/2019-10-19_doc2vec-part2/Weeks_Correspondence-April1915.jpg"
+                        alt="Weeks's Letter in Poetry" />
+                    <p>Figure 1: Weeks's Letter in <i>Poetry</i>.</p>
+                </div>
+                
+
+                <p>Weeks's proposal that literature decomposes and recomposes in new forms provides
+                    an interesting framework for applying computational methods. If doc2vec can
+                    reliably cluster magazines and genres, can it also sort smaller documents and
+                    reveal the recomposition of literary forms? Can it discern literary lineages in
+                        <i>Poetry</i>? I re-ran the model to explore these questions but this time I
+                    brokedown the <q>poetry</q> genre into 250-word chunks. Although there is some
+                    overlap in chunking poetry—some chunks will have the beginning of one poem and
+                    the end of another—the slight imprecision does not prevent the model from doing
+                    its task. The goal of using doc2vec to retrieve literary lineages is to extract
+                    similar language (which might map onto similar motifs or themes). These lineages
+                    should extend beyond a single poem. This model assumes that motifs, themes, and
+                    ideas recycle within print culture and, through repetition, enrich and grow or
+                    waste away into obscurity. Here, textuality is a mixture. The composite nature
+                    of literature is perhaps easier to acknowledge in serialized magazines, where
+                    texts, authors, and genres intermingle and can stain each other.</p>
+
+                <div class="container w3-center">
+                    <img class="w3-round zoom"
+                        src="../images/2019-10-19_doc2vec-part2/sankey_lindsay-lowell-curran.png"
+                        alt="Sankey Diagram of Literary Lineage in Poetry" />
+                    <p>Figure 2: Sankey Diagram of Literary Lineage in <i>Poetry</i>.</p>
+                </div>
+
+
+                <p>Figure 1 shows a possible literary lineage. Each node in the graph represents a
+                    section from a poem. The graph organizes these sections chronologically with
+                    older poems appearing towards the left and more recent poems towards the right.
+                    The positions of the nodes are relative, so Lindsay's poem appears near
+                    Seiffert's but they were published five years apart (as the label indicates).
+                    Each node is connected based on their similarity within the doc2vec model. Here,
+                    Seiffert's drama(s) offer a baseline for reading the graph. <q>The Old Woman</q>
+                    was reprinted in <i>Poetry's</i>
+                    <q>Prize Award Number.</q> Doc2vec reads these works as sharing significant
+                    similarity, which they do because they are nearly identical (there might be some
+                    slight differences due to OCR and/or how the texts are broken down into chunks).
+                    The other poems in the graph are more telling.</p>
+
+                <p>Doc2vec connects Nicholas Vachel Lindsay and Amy Lowell, inviting a close reading
+                    predicated on their supposed similarities. At first glance, though, each poem
+                    seems very different. Lindsay’s poem portrays a wild party in a sleepless city.
+                    Lowell’s hybrid genre of interspersed prose and poetry is set in a quiet living
+                    room with a small boy playing with toy soldiers. The different settings of these
+                    poems indicate that doc2vec is locating their similarities at a different level
+                    of textuality. By turning to close reading, we can more fully examine what
+                    connects these poems and restore their complexity. If their similarities are
+                    modulations of the same semantic space—that is, their similar use of language
+                    signifies towards the same poetic conceit—then close reading how these
+                    similarities manifest will show how the same idea develops over time and how
+                    language adjusts to cultural changes. Close reading takes up the weak
+                    connections that tie these poems together, asking whether their similarities
+                    extend to more complex levels of literariness. The following close readings will
+                    focus on the passages that doc2vec identifies as similar.</p>
+
+                <p>Lindsay’s <q>The Fireman’s Ball</q> (July 1914) describes a boisterous ballroom
+                    that appears to catch fire as the musicians and dancers party into the night.
+                    When the conductor ups the tempo of the band, the flames stretch higher up the
+                    walls of the building. The poem depicts a ballroom engulfed with modern,
+                    jazz-like revelry: <q>Listen to the music  Of the fireman’s ball—  Listen to the
+                        music  Of the fireman’s ball.  “’Tis the night of doom,”  Say the ding-dong
+                        doom-bells.  “Night of doom,”  Say the ding-dong doom-bells.  Faster,
+                        faster,  The red flames come (pp. 125—126).</q> Music mixes with cityscape
+                    noises, a siren, and the blaze. Lindsay’s repetition provides a rhythm and pace
+                    that matches the scene, until a warning briefly interrupts it. As the poem
+                    concludes, another voice speaks. Lindsay introduces this new speaker with a
+                    Buddhist proverb from the first Khandaka of the Mahāvagga. The Mahāvagga
+                    describes the awakening of Gautama Buddha’s ten disciples. In Lindsay’s poem,
+                    this new voice warns of the destructiveness of vice, <q>Wine is fire…Hate is
+                        fire…Life is a flame</q> (p. 130). The poem ends with a fire engine loudly
+                    interrupting this teaching as it tries to rescue people from a burning and
+                    collapsing building. Lindsay’s poem celebrates the wildness of joy and music but
+                    eventually questions the delirious drive that leads to possible destruction. The
+                    poem ends uncertainly poised between the violence of unregulated pleasure and
+                    the lively joy captured in such abandon.</p>
+
+                <p>Amy Lowell’s <q>Lead Soldiers</q> (September 1915) also pairs a consuming fire
+                    with music but begins with a much quieter setting. In her poem, Tommy plays with
+                    toy soldiers in the nursery. She begins with a description of the fire next to
+                    him:  The nursery fire burns brightly, crackling in cheerful little explosions
+                    and trails of sparks, up the back of the chimney. Miniature rockets peppering
+                    the black bricks with golden stars, as though a gala flamed a night of
+                    victorious wars (269). The scene here is much calmer than Lindsay’s erratic
+                    jazz-party, but the similarities of the two poems start to emerge. Lowell
+                    depicts the fire as a <q>gala,</q> providing the first comparative link back to
+                        <q>The Fireman’s Ball.</q> After the description of the nursery, Lowell
+                    transitions to poetry as <q>Tommy’s soldiers march to battle, / Trumpets flare
+                        and snare-drums rattle.</q> The military instruments that appear in this
+                    passage likely occupy the same semantic space as Lindsay’s diction in <q>The
+                        Fireman’s Ball,</q> explaining why doc2vec sees a connection between the two
+                    poems.</p>
+                
+                
+                <div class="container w3-center">
+                    <img class="w3-round zoom"
+                        src="../images/2019-10-19_doc2vec-part2/Lowell_LeadSoldiers-Sept1915.jpg"
+                        alt="Lowell's "Lead Soldiers" in Poetry" />
+                    <p>Figure 3: Lowell's "Lead Soldiers" in <i>Poetry</i>.</p>
+                </div>
+
+                <p>Surprisingly, though, Lowell and Lindsay’s comparisons continue. Although <q>Lead
+                        Soldiers</q> begins calmly in a nursery, Lowell imports scenes of real
+                    violence in Tommy’s game. As Tommy leads his soldiers into a battle he cannot
+                    comprehend, his toe catches the <q>leg of the wash-stand, and jars the
+                        pitcher</q> (274). Tommy fails to catch the falling pitcher, and it
+                        <q>crashes to the floor. But it is not water which oozes to the door. The
+                        stain is glutinous and dark, a spark from the firelight heads to it red.</q>
+                    In a surrealist mode, the water turns to blood and drowns the toy soldiers on
+                    the floor. Like Lindsay’s poem, Lowell subverts the apparent playfulness with
+                    unexpected violence. Here, Lowell undermines Tommy’s game of soldiers by
+                    aligning it with military violence and self-destruction. These comparisons
+                    likely go beyond doc2vec’s model, which is limited to 200-word chunks rather
+                    than the entire poem. Tommy’s fall and the Buddhist caution appear outside the
+                    passage that doc2vec links together. And yet, as the poems continue later
+                    passages reinforce their shared themes and motifs.</p>
+
+                <p>In yet another strange convergence, Lowell and Lindsay both evoke orientalist
+                    figures to provide a dissonant counterpoint. In <q>Lead Soldiers,</q> a kitsch
+                    figurine, the <q>nodding mandarin,</q>” overlooks the scene as the poem
+                    progresses. The figure with <q>blue-green eyes</q> stares into <q>the air, and
+                        he nods—nods,</q> with calmness. Apparently unfazed by the room filling with
+                    blood and perhaps expecting it, the figurine continues nodding even when his
+                        <q>rose is broken,</q> and falls into the <q>black blood</q> (274). Lowell
+                    and Lindsay employ Orientalism to provide a knowing sobriety to their otherwise
+                    violent scenes. While doc2vec provides the hooks that connect these two poems
+                    together, close reading restores their literary complexities, which further
+                    solidify their likenesses.</p>
+
+                <p>Doc2vec collects passages with fire imagery interlaced with music descriptors.
+                    These connections serve as platforms for further examination, highlighting
+                    stronger complexities and similarities. Read together, these three poems
+                    illustrate a progression of violence that drifts from local scenes, such as
+                    Lindsay’s city or Lowell’s nursery. This thematic progression across these three
+                    poems tracks with the progression of World War I. Doc2vec’s connections,
+                    however, are significant because they offer a way to track Weeks’s and others’
+                    conception of poetic composting. Each poem highlights the development of similar
+                    themes and literary palettes over a seven-year span. While they do provide
+                    bridges to the literary complexities of each poem, they are also links to
+                    previous poems and accentuate the aggregation of literary taste.</p>
+
+                <p>Literary complexities, such as themes, historicity, and theory, are the
+                    predominant mode of literary analysis but are also its limit. Close reading does
+                    not attend to certain kinds of knowledge, specifically the prevalence of
+                    literary forms and their propagation elsewhere. Close reading tends to high
+                    levels of abstraction that crystalize literature, fastening texts to specific
+                    and often unchanging structures. Focusing on the high-level complexities of
+                    literature draws out the limitless nuances of a text, but it also silos each
+                    work. Texts fold into themselves and wait for theories to subsume them. The
+                    focus on higher levels of textuality constrain literary analysis as much as they
+                    enable it to explore texts deeply. Ultimately, the abstract levels of textuality
+                    pull attention away from the routine practices of writers, which can elucidate
+                    the fluidity of literary production.</p>
+
+                <p>Weeks and other readers praised mediocrity and proposed a theory of literary
+                    production, arguing that poetry was a communal process that matured through
+                    literary composting. Literary values emerged within a dynamic and collaborative
+                    system of cultural production. Doc2vec helps recover this composting by
+                    rendering literary production as a web of weak connections composed of semantic
+                    similarity. Once doc2vec aggregates many weak connections together, close
+                    reading restores their complexities and elucidates the stronger, thematic
+                    connections that bind poems together beneath their surfaces.</p>
+
+                <p>Pulling together readers and seriality prompts literary criticism to attend to
+                    the temporality of cultural capital. Harriet Monroe’s belief that the <q>great
+                    audience</q> offered artists a <q>reciprocal relationship</q> indicates that many facets
+                    go into cultural creation. Within any single poem, many voices coalesce. If
+                    letters to the editor call attention to new timelines and new actors of literary
+                    production, then the question of literary criticism cannot only ask what
+                    dominant forms of literature are present. Literary criticism must content with
+                    who or what keeps it there.How are dominant forms of literature made durable or
+                    weakened? How does cultural capital change hands? To engage these questions,
+                    criticism must contend with different scales of analysis and work to understand
+                    how provisional, coincidental, even accidental literary similarities can
+                    transform into strong structures of cultural capital and literary prestige.
+                    Cultural studies should continue to interrogate the dominant forms within
+                    literature but must also ask who or what allowed those forms there in the first
+                    place.</p>
+
+            </div>
+        </main>
+        <footer class="row">
+            <div class="column">William Reed Quinn</div>
+            <div class="column"><img class="logo" src="../images/logos/Twitter_Logo_Blue.png"
+                    alt="Twitter logo" />@wi_quinn</div>
+            <div class="column">
+                <img class="logo" src="../images/logos/GitHub-Mark-32px.png" alt="Github logo" />
+                <a href="https://github.com/billquinn/">billquinn</a>
+            </div>
+        </footer>
+        <!-- End page content -->
+    </body>
+</html>

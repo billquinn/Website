@@ -1,0 +1,297 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="../styles/main.css" />
+        <link rel="stylesheet" href="../styles/menu.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    </head>
+
+    <body>
+        <header class="w3-indigo">
+            <script src="../styles/menu.js"></script>
+        </header>
+        <!-- !PAGE CONTENT! -->
+        <main role="main" class="w3-container">
+            <div class="main-body">
+                <h1 align="center">Combative Collaboration:</h1>
+                <h2 align="center">Readers in the Cultural Field of <i>The Little Review</i></h2>
+
+                <div class="note" align="center">
+                    <p>This is a version of the talk I gave at the 2019 Association of Computers and
+                        the Humanities.</p>
+                    <p>Magazine Images from <a href="http://modjourn.org/">Modernist Journals
+                            Project</a></p>
+                </div>
+
+                <p>My talk comes from a chapter of my dissertation, where I explore the social uses
+                    and cultural work of language by examining literature’s influence on readers and vice-versa.
+                    While literary criticism has nuanced theories of critical reading, the readers
+                    themselves and, therefore, the consequences of language are often absent. To
+                    explore questions about the infectious ideas within literature, I consider an
+                    overlooked genre: letters to the editor published in magazines. Such letters
+                    showcase readers’ efforts to evaluate and critique art, and thereby participate
+                    in the formation of taste.</p>
+                <p>In this talk, I consider a peculiar modernist magazine and employ topic modeling
+                    to understand how the dynamics of genre play out over time and what sort of
+                    cultural values might be signaled within. The goals of this project are not only
+                    to recover readers’ commentaries on literary history but also to conceptualize
+                    ways of critical reading that attend to seriality and magazine print
+                    culture.</p>
+
+                <p>As Hannah McGregor has argued, the open-ended state of periodicals
+                        <q>challenge[s] familiar critical modes of reading</q> as <q>the complex
+                        interplay of seriality and hypermediacy</q> surface (2014, “Remediation as
+                    reading: digitising The Western Home Monthly,” 250). The challenge of seriality
+                    resonates with computational modes of critical analysis as well. As Jo Guldi,
+                    David Armitage, and Ted Underwood have noted, comptutational approaches offer
+                    one route to move beyond the limits of conventional close reading.</p>
+
+                <blockquote cite="Jo Guldi and David Armitage, The History Manifesto">The prison and
+                    the coffeehouse became the two poles of macro-history, the pessimistic and the
+                    optimistic account of modern institutions, into which micro-historians of the
+                    Short Past poured their finer-grained details</blockquote>
+                <blockquote cite="Ted Underwood,  “Why Literary Time is Measured in Minutes”">There
+                    is a “surprising amount of consensus about certain aesthetic and rhetorical
+                    choices. Our habit of condensing evidence into a resonant moment is a great
+                    example. New Historical anecdotes are not the only way we achieve this. Our
+                    titles are often organized by an implicit tableau: ‘The Madwoman in the Attic,’
+                    ‘Unpacking My Library,’…They all evoke a brief episode from which you can unfold
+                    a larger structure of feeling</blockquote>
+
+                <p>Before I get to the computational aspect of this work, however, I first want to
+                    focus on the materials that sparked this project. In particular, I look at a
+                    magazine well-known in Modernist Studies called <i>The Little Review</i>. The
+                    magazine began as bold literary and social review that regularly featured
+                    avant-garde literature and supported radical political movements, namely
+                    anarchism. Its masthead read, <q>Making No Compromise with the Public Taste.</q>
+                    Although the magazine was tailored to a relatively small group of subscribers,
+                    it nevertheless found itself obtaining federal attention on several occasions.
+                    The first occurred when Margaret Anderson, the founder and editor, suggested
+                    that <q >some one shoot the governor of Utah</q> and <q
+                        >start the Revolution</q> (<q >Toward
+                        Revolution,</q> 5). Her editorial was in response to the execution of Joe
+                    Hillstrom, a member of Industrial Workers of the World, and prompted an FBI
+                    investigation into <i>The Little Review’s</i> offices. Perhaps better known in literary
+                    studies, however, is the magazine’s court battle over the publication of James
+                    Joyce’s <q >Nausicaa</q> episode from Ulysses. The Society for the
+                    Suppression of Vice charged <i>The Little Review</i> with obscenity, forcing
+                    Anderson to discontinue the serialization of Joyce’s work. These and similar
+                    events helped develop <i>The Little Review</i>’s significant and notorious
+                    legacy in modernist studies.</p>
+                <p>Of the many shocking moments in <i>The Little Review</i>’s fifteen-year run,
+                    however, one stands out as perhaps the most peculiar: The September 1916
+                        <q>Blank Issue.</q></p>
+
+                <div class="container">
+                    <img class="w3-center w3-round"
+                        src="../images/2019-07-25_combat-collab/ach-2019_blank-issue-cover.jpg"
+                        alt="Image of The Little Review's Blank Issue" />
+                </div>
+
+                <p>After two years of publishing, Anderson released this issue with these words
+                    printed on the first page: <q>The Little Review hopes to become a magazine of
+                        Art. The September issue is offered as a ‘Want Ad.’</q> Then, the following
+                    page states, <q>...‘The other pages will be left blank.’</q> The next eleven
+                    pages were intentionally left blank. The only content within the magazine was a
+                    few featured letters and editorial pieces, including a series of cartoons
+                    illustrating Anderson using her free time now that she is not editing.</p>
+                <p>The Blank Issue, then, dramatically marks a literary community in the midst of
+                    transformation. Anderson pledges to change the magazine’s politically-driven
+                    agenda into a coterie for experimental and apolitical Art.</p>
+
+                <div class="container">
+                    <img class="w3-center w3-round"
+                        src="../images/2019-07-25_combat-collab/ach-2019_puteklis-letter.png"
+                        alt="Image of Puteklis's Letter" />
+                </div>
+
+                <p>The readers, however, rejected this transformation. The most common complaint
+                    against the magazine after the Blank Issue was that the magazine had abandoned
+                    its social and political interests. Louis Puteklis, a reader who appears a few
+                    times, asks the editors, <q>What is your definition of art? You say: ‘Art for
+                        Art’s sake,</q> but <q>that is only a phrase</q> (25). The editors provide
+                    the motto, but not an explanation: <q>Why is there no encouraging editorial on
+                        Art? Thirteen empty pages and not a word from the pen of the Art-sick
+                        Editor?</q> Grasping at some understanding for the magazine’s sudden shift,
+                    Puteklis’s letter leads him to his ultimate question: <q>for whom is The Little
+                        Review published? For artists only, or for all people</q> (26). Puteklis’s
+                    vision of literature is inseparable from the social dimensions of writing.
+                    Whether <q>progressive or retrogressive,</q> he argues, <q>[t]here can be no art
+                        without social vision, and without definite ideas.</q> His letter
+                    articulates the same social concerns found in other letters.</p>
+                <p>Setting up the two sides of this literary schism—the editors, who insisted on the
+                    autonomy of art, and the readers, who demanded art that was politically
+                    active—begins to tell a story about the dynamics of literary production in
+                    serial publishing. But, it does not tell the whole story yet. It does not
+                    explain what happened afterward. Did the editors or readers cave? Did literary
+                    genres also change in the midst of these literary debates and commentary?</p>
+                <p>I take up topic modeling to explore these questions and try to render literary
+                    history of <i>The Little Review</i> as a dynamic and evolving environment. More
+                    specifically, I topic modeled a large portion of the <a
+                        href="http://modjourn.org/">Modernist Journals Project</a>, which has
+                    digitized and encoded many literary magazines of the early twentieth century,
+                    including <i>The Little Review</i>. Topic modeling, in a simplified sense, can
+                    be imagined as a process that reads through a corpus twice. The first time it
+                    determines what topics compose the corpus based on how frequently words appear
+                    together. Then, it reads through it again, assigning those topics to each
+                    document. The actual mechanics of topic modeling are much more complex, but
+                    understanding these basics are what is necessary for my purposes.</p>
+
+                <div class="container">
+                    <img class="w3-center w3-round zoom"
+                        src="../images/2019-07-25_combat-collab/ach-2019_topics.png"
+                        alt="Sample of Topics from Model" />
+                </div>
+
+                <p>The topics match literary intuitions about the time period, including topics
+                    about World War I and the Suffrage Movements in England and America. In order to
+                    understand how literary attitudes changed over time, though, I then compare
+                    genres to each other. I draw on others’ work which also investigates textual
+                    similarity as a signal of influence and the consolidation of cultural taste.</p>
+                <p>In order to determine whether genres were becoming more or less like each other,
+                    I used cosine similarity. Cosine similarity is the cosine of the angle between
+                    two vectors. In this case, each vector is the ratio of topics in a single
+                    document. Cosine similarity determines orientation rather than magnitude and is
+                    more effective at representing data with many dimensions, such as topic
+                    modeling. In <q>The Historical Significance of Textual Distances,</q> Ted
+                    Underwood finds that topic modeling and cosine similarity can effectively serve
+                        <q>as a proxy for human judgments about social difference</q> (2018, 1).
+                    This method can highlight the cohesion and gravitational pull of genres within
+                    the magazine over time.</p>
+                <p>Rather than use the topic model to describe texts and their contents, this method
+                    illuminates the fluctuations and hybridity of topics. Andrew Piper describes
+                    this approach as <q>reading topologically,</q> where instead of defining
+                    documents as predominately about a topic, this method instead retains a sense
+                    that topics <q>reside across all documents in different states of likelihood</q>
+                    (2018, <i>Enumerations</i>, 69). Topic modeling in this way, then, moves beyond
+                    descriptions of documents and instead allows <q>us to see how ideas cohere, but
+                        also fade away.</q></p>
+
+                <div class="container">
+                    <img class="w3-center w3-round zoom"
+                        src="../images/2019-07-25_combat-collab/ach-2019_article-letter-sim.png"
+                        alt="Graphs of Genre Similarity and Change Over Time" />
+                </div>
+
+                <p>What I found was that the similarity of topics in articles and letters weakens in
+                    a way that parallels the literary debates found when reading individual texts.
+                    In this graph, I combine the genres marked up in the Modernist Journals Project
+                    and compare them to other genres within the same year. Here, the <q>letters</q>
+                    and <q>articles</q> genres show how each genre relates to the others. For
+                    instance, the <q>articles</q> graph on the left shows the similarities of
+                    articles to other genres from 1914—1922. At the top of the graph, the
+                        <q>letters</q> genre starts in close proximity, indicating that the two
+                    genres shared a similar topic composition. Although the two genres’ similarity
+                    declines steadily, it drops noticeably in 1916, when the Blank Issue was
+                    published. These graphs reinforce the textual evidence that <i>The Little
+                        Review</i> was splitting into different communities, separately organized
+                    around different interests but hosted within the same magazine.</p>
+                <p>I have included the <q>poetry</q> genre in these graphs to further explore what
+                    an evolving literary community might look like. The graph on the right shows
+                    similarities compared to the <q>letters</q> genre. Once again, 1916 is a
+                    conspicuous year. The similarity between readers’ letters and poetry begins to
+                    diverge at this time. Meanwhile the relationship between topics found in
+                    articles and poetry stays the same.</p>
+                <p>The relatively flat similarity between poetry and articles after 1916 suggests
+                    that the two genres developed and changed together each year. These graphs, I
+                    argue, illuminate the diverging interests of readers, editors, and poets. The
+                    most common topics in the article and letters genre before and after 1916
+                    further reflect the literary changes within <i>The Little Review</i> and hone in
+                    on what specifically changed.</p>
+
+                <div class="container">
+                    <img class="w3-center w3-round zoom"
+                        src="../images/2019-07-25_combat-collab/ach-2019_topics-comparison.png"
+                        alt="Comparison of Top Topics in 1914 and 1918" />
+                </div>
+
+                <p>The addition of French and European topics becomes the most noticeable change
+                    when comparing the top topics that appear in articles of 1914 and 1918. For
+                    Modernist Studies, these European topics are likely familiar as they recall the
+                    ex-patriots who America to practice Art in England, France, and other
+                    countries.</p>
+                <p>The topic model elucidates the evolution of not only the political nature of the
+                    magazine into an art coterie but also how a persistent and durable interest can
+                    be rendered differently over time. The topic model suggests that turning away
+                    from politically charged literature towards avant-garde, experimental poetry
+                    included the promotion of French and continental writers. The movement towards
+                    the European art scene would complete <i>The Little Review</i>’s transformation,
+                    and Anderson would eventually move the magazine’s operations from New York to
+                    Paris.</p>
+                <p>But, what happened to the readers’ political concerns? The topic model only
+                    indicates that they diverged but does not articulate whether their interests
+                    simply faded away, persisted, or took on new forms of its own. Returning to the
+                    magazine with a reading practice informed by the topic model heightens.</p>
+                <p>The readers recognized the editorial trajectory of moving the magazine away from
+                    politics, towards experimental art forms, and even further still to European
+                    writers. In a parallel movement, the readers interests in politics also
+                    transforms. They maintain their antagonistic stance against the editors interest
+                    by calling for more American literature.</p>
+
+                <p>One reader wistfully recalls a previous issue when the magazine <q>converted
+                        [them] to a faith in New America</q> (31). Now, however, the reader knows
+                        <q>surely the spirit of the old Little Review is dead</q> because it Ezra
+                    Pound, who recently became the Foreign Literary Editor, has <q>Ezraized</q> the
+                    magazine (32). Although the editors <q>seem to be proud of [their]
+                        evolution,</q> the reader warns the new issues will <q>have no appeal to
+                        Young America.</q> This reader typifies the changing concerns about the new
+                    style of <i>The Little Review</i>. As the magazine seemingly moved further away
+                    from social criticism, it also moved further away from America’s literary scene.
+                    Readers conflated the changing state of the magazine—it’s effort to be less
+                    socially aware—with an effort to become more European.</p>
+                <p>The old tensions of politics and art transform and continue as tensions about
+                    European and American art. The readers argue that European art will not relate
+                    to American readers. The readers and editors also conflate the calls for
+                    American literature with the spirit of the old Little Review, thereby aligning
+                    it with its original political mission without addressing politics by name.</p>
+
+                <div class="container">
+                    <img class="w3-center w3-round"
+                        src="../images/2019-07-25_combat-collab/ach-2019_heap-notes.jpg"
+                        alt="Image of Jane Heap's Notes in the American Issue" />
+                </div>
+
+                <p>In perhaps one final twist, the co-editor, Jane Heap, ends up publishing an
+                    American Issue against the wishes of Anderson. This issue does not reverse the
+                    growing number of Europeans writers in <i>The Little Review</i>, but it does
+                    signal to its readers that their voices are—at least somewhat, partially,
+                    perhaps only minimally—important. Heap’s note at the end of the issue echoes the
+                    magazine’s masthead when she writes, <q>I am responsible for this issue. It was
+                        made with no compromise to Margaret Anderson or Ezra Pound.</q> It allows
+                    her to gesture to the readers’ interest in American literature without
+                    necessarily committing to them.</p>
+                <p>The ongoing arguments about art and society created a state of combative
+                    collaboration in The Little Review. Disapproving readers continued to subscribe
+                    to a magazine while challenging its new format. Anderson and Heap—and eventually
+                    Ezra Pound—forged ahead with their new literary program, offering some
+                    instruction on the new artistic regime’s values but little patience for dissent.
+                    Editors and readers frequently collided in their letters. Rather than stunting
+                    the growth of the magazine, the antagonistic presence of many readers in <i>The
+                        Little Review</i> became a generative force in the evolution of the
+                    magazine’s cultural field. Readers, editors, and authors competed with each
+                    other in order to define the value of art and the magazine’s literary taste. As
+                    such, the Blank Issue records a unique moment in print culture, one that
+                    highlights the centrality of readers in literary production and the evolution of
+                    a cultural field.</p>
+                <p>The topic model provides a through-line for exploring the transformation of a
+                    literary community. It marks how the community’s interests change and can also
+                    prompt further investigation, which can reveal how durable ideas might appear in
+                    different ways and be a continuation rather than an interruption of literary
+                    priorities.</p>
+
+            </div>
+        </main>
+        <footer class="row">
+            <div class="column">William Reed Quinn</div>
+            <div class="column"><img class="logo" src="../images/logos/Twitter_Logo_Blue.png"
+                    alt="Twitter logo" />@wi_quinn</div>
+            <div class="column">
+                <img class="logo" src="../images/logos/GitHub-Mark-32px.png" alt="Github logo" />
+                <a href="https://github.com/billquinn/">billquinn</a>
+            </div>
+        </footer>
+        <!-- End page content -->
+    </body>
+</html>

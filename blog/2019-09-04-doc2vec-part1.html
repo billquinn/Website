@@ -1,0 +1,216 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="../styles/main.css" />
+        <link rel="stylesheet" href="../styles/menu.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    </head>
+
+    <body>
+        <header class="w3-indigo">
+            <script src="../styles/menu.js"></script>
+        </header>
+        <!-- !PAGE CONTENT! -->
+        <main role="main" class="w3-container">
+            <div class="main-body">
+                <h1 align="center">Doc2vec.</h1>
+                <h2 align="center">Part 1.</h2>
+
+                <p>In this first post, I want to share a tool I've been using to explore literary
+                    influence: doc2vec. I've been using doc2vec to look at how poetry gradually evolves in <i>Poetry, a
+                        Magazine of Verse</i> (and if doc2vec is capable of registering poetry's mutations). <i>Poetry</i> continues today, and was an important
+                    literary hub of modernism in the early twentieth century.</p>
+
+                <p>Doc2vec builds off its predecessor and namesake, word2vec, so starting there will
+                    explain why doc2vec offers one way to model literary change (and, potentially, a
+                    form of literary influence). Word2vec is a computational process designed to
+                    capture the semantic relationships between words. For thorough explanations of
+                    word2vec, I still refer to Benjamin Schmidt's <q><a
+                            href="http://bookworm.benschmidt.org/posts/2015-10-25-Word-Embeddings.html"
+                            >Word Embeddings for the digital humanities</a></q>, Lynn Cherny's <q><a
+                            href="http://blogger.ghostweather.com/2014/11/visualizing-word-embeddings-in-pride.html"
+                            >Visualizing Word Embeddings in Pride and Prejudice</a></q>, and <a
+                        href="https://wwp-test.northeastern.edu/lab/wwvt/index.html">The Women
+                        Writers Vector Toolkit</a>. Word2vec aims to reconstruct the semantic
+                    relationships of words. To take one common example, the words <q>king,</q>
+                    <q>queen,</q>
+                    <q>man,</q> and <q>woman</q> share certain, culturally determined meanings that
+                    convey gender and class. That is, a word2vec model can predict cultural meaning
+                    with mathematical formulas, such as <q>king</q> - <q>man</q> = <q>queen.</q> By
+                    capturing the relationship between words, word2vec improves on other methods
+                    because it can recreate polysemy and understands analogies.</p>
+
+                <div class="container w3-center">
+                    <img class="w3-round"
+                        src="../images/2019-09-04_doc2vec-part1/Shperber-word2vec-gender.png"
+                        alt="Graph of Word2Vec Word Similarities" />
+                    <p>Image from Gidi Shperber's <q><a
+                                href="https://medium.com/scaleabout/a-gentle-introduction-to-doc2vec-db3e8c0cce5e"
+                                >A Gentle Introduction to Doc2vec</a></q></p>
+                </div>
+
+                <p>In capturing semantics, word2vec also captures cultural biases embedded within
+                    any corpus, which Nissim, van Noord, and van der Goot discuss in <q><a
+                            href="https://arxiv.org/abs/1905.09866">Fair is Better than Sensational:
+                            Man is to Doctor as Woman is to Doctor</a></q>. Although all algorithms
+                    are infused with bias, word2vec differs from other computational approaches
+                    which would only know <q>king</q> as a four-character sting of text. Schmidt
+                    argues that word embedding models, like word2vec, <q>merit attention because
+                        they allow a much richer exploration of the vocabularies or discursive
+                        spaces implied by massive collections of texts than most other
+                        [computational] reductions out there.</q> Applying word2vec to a corpus
+                    enables a large-scale computational reading that is more attuned to cultural
+                    meanings than most computational models.</p>
+
+                <p>Word2vec, therefore, is useful for studying poetic language that relies on
+                    nuanced combinations of words to create meaning. While word2vec transforms a
+                    corpus into a single, long string of text, doc2vec remembers the borders of
+                    documents, which can be set as issues of a magazine, individual poems, novels,
+                    or other documents. Doc2vec takes the relationships of words that word2vec
+                    discovers and re-packages them within their original textual boundaries. Doc2vec
+                    and word2vec propose a specific theory of language: semantics emerge from
+                    context. Each word maintains its many meanings; each meaning can be called forth
+                    as a vector that points toward other words that share the same semantic space. A
+                    single word’s multiple meanings can be highlighted or dismissed by querying in
+                    different accompanying words. For these reasons, Quoc Le and Tomas Mikilov, the
+                    developers of word2vec and doc2vec, report that doc2vec improves on previous
+                    methods used to recover cultural semantics and maintaining the order of words
+                    (2014).</p>
+
+                <p>Doc2vec’s logic of semantics maps onto figurative language. Similar words in
+                    concentrated textual spaces orients mathematical vectors as if turning their
+                    signifiers towards the same direction. In this way, I believe doc2vec can
+                    harmonize with figurative language, which, in a sense, also relocates the
+                    meaning of a text outside the literalness of words’ definitions (denotations)
+                    but within context clues (connotations). By leveraging the encoding practices of
+                    the Modernist Journals Project (MJP), doc2vec can start the process of sorting
+                    language-users into different communities.</p>
+
+                <div class="container w3-center">
+                    <img class="w3-round zoom"
+                        src="../images/2019-09-04_doc2vec-part1/scatter-d2v-mjp-mags.png"
+                        alt="Scatter Plot of Magazines in MJP" />
+                    <p>Figure 2: Scatter Plot of Magazines in MJP. Parsed by issue.</p>
+                </div>
+
+                <p>Figure 2 refracts the different magazines into sensible clusters. The <q>High
+                        Modernist</q> magazines, such as <i>The Little Review</i>, <i>Poetry</i>,
+                    and Dora Marsden’s magazines (<i>The (New) Freewoman</i> and <i>The Egoist</i>)
+                    cohere on the right side of the graph. These magazines published canonical
+                    authors, like James Joyce, Amy Lowell, T.S. Eliot, and H.D. While these
+                    magazines on the right promoted avant-garde, experimental literature, the
+                    magazines on the left were more explicitly political. <i>The Crisis</i> was (and
+                    continues to be) the newsletter of the NAACP and was instrumental in fostering
+                    the Harlem Renaissance along with other magazines. Under its first editor, W.E.B
+                    Du Bois, the magazine published reports of racial prejudice and uplift alongside
+                    their literary sections. <i>The Masses</i> was a socialist monthly and was
+                    dubbed <q>the most dangerous magazine in America</q> (<a
+                        href="http://modjourn.org/render.php?view=mjp_object&amp;id=MassesCollection"
+                        >MJP</a>).</p>
+
+                <p>Figure 2, then, reconstructs the old facade of <q>High Modernism.</q> The
+                    avant-garde magazines on the right, separated from the socially critical
+                    magazines on the left, recover their apolitical posturing. Scholarship has now
+                    thoroughly debunked the myth that canonized modernist were supposedly
+                    disinterested in politics and ianti-commercial. <i>The Little Review</i>, for
+                    instance, began as a socialist-anarchist magazine. Even after its notorious <a
+                        href="http://modjourn.org/render.php?id=1295552160506125&amp;view=mjp_object"
+                        >Blank Issue</a>, where it committed to being a magazine of <q>Art,</q> the
+                    editors continued to grapple with readers who demanded a return to its socialist
+                    (political) roots.</p>
+
+                <p>While doc2vec reproduces this fossilized portrayal of modernism, this brief
+                    revival might actually signal that the computational process has worked well.
+                    The illusion of an apolitical modernism held a strong grasp on modernist studies
+                    until (more or less) the New Modernist Studies, when the field expanded beyond
+                    the canon, and the rise of periodical studies, which brought new materials into
+                    focus. Both movements complicated the history that many modernists ostensibly
+                    promoted (while I’m most familiar with these two subfields, I am sure there are
+                    others that also helped this shift). When doc2vec clusters these magazines into
+                    modernist and non-modernist camps, the results are not suggesting now-overturned
+                    myths of High Modernist were in fact accurate. Instead, I interpret doc2vecs
+                    results as attending to a shallower surface of language; doc2vec takes the
+                    modernist apoliticizing at face-value. As I hope to show in the next post, this
+                    doesn’t produce a roadblock and can actually be leveraged for more insightful
+                    readings.</p>
+
+                <div class="container w3-center">
+                    <img class="zoom"
+                        src="../images/2019-09-04_doc2vec-part1/scatter-d2v-mjp-genres.png"
+                        alt="Scatter Plot of Genres in MJP" />
+                    <p>Figure 3: Scatter Plot of Genres in MJP. Parsed by genre.</p>
+                </div>
+
+                <p>Figure 3 visualizes clusters of genres. Again, doc2vec seems to be sorting
+                    documents (the chunks of text encoded by the MJP) into discernable groupings.
+                    The visualization above reflects the MJP’s encoding practices, which markup
+                    genres within an issue as a bundle. So, all the poems in a single issue are
+                    bound together and, when they are parsed for computation, they appear as if a
+                    single string. Although the encoding is not as precise as a human reader, the
+                    markup does not prevent documents from clustering intuitively. The five main
+                    genres (poetry, ficiton, articles, letters to the editors, and advertisements)
+                    settle into their own localized sites. Articles and letters share the same
+                    space, which is a finding I am exploring further with my dissertation.</p>
+
+                <p>What I find promising about doc2vec’s clustering is that it reproduces expected
+                    intuitions about literary history, namely different magazines and genres use
+                    language differently and, therefore, occupy different semantic spaces. Doc2vec
+                    can leverage this encoding and move to another level of textuality, like peeling
+                    off a layer of an onion, and begin to model the ways genres inflect each other
+                    over time.</p>
+
+                <div class="container w3-center">
+                    <img src="../images/2019-09-04_doc2vec-part1/chord-diagram-sims.png"
+                        alt="Chord Diagram of Genre Transfer/Influence" />
+                    <p>Figure 4: Chord Diagram of Genre Influence/Transfer</p>
+                </div>
+
+                <p>Using the same data, but filtered and computed slightly differently, we can see
+                    how doc2vec understands how semantics drift across genres over time. While the
+                    cluster graphs of Figure 2 and 3 show a static picture of textual distance,
+                    Figure 4 adds a temporal dimension by asking what genres are most like genres
+                    from previous years. This graph starts to visualize how genres converge.</p>
+
+                <p>Figure 4 shows the four main genres in <i>Poetry</i>: poetry, letters, articles,
+                    and advertisements. The ribbons that span across the interior of the circle
+                    indicate semantic similarity. The graph shows the trajectories of similarities
+                    amongst each genre. The <q>poetry</q> ribbon, for example, curls towards the
+                        <q>letters</q> arc, suggesting a semantic drift that moved from poems to the
+                    language of readers. This one-directional movement likely highlights the readers
+                    who discussed poetry through quoting, paraphrasing, or possibly adopting the
+                    linguistic patterns of the poems they read. A reader, perhaps, intentionally or
+                    unintentionally mimicked the writing styles of poems that she was reading and
+                    wrote down a similar cluster of words in her own letter. Readers discussing
+                    poems in a magazine for poetry is not significant. And yet, the graph elucidates
+                    the flow of semantics within the magazine. The modes of cultural production and
+                    the consolidation of literary taste manifests here as a ribbon unfurling from
+                    one arc to another. Although language modulates differently in each genre and
+                    within each magazine, doc2vec surfaces the hidden layer of semantics that run
+                    beneath.</p>
+
+                <p>I understand the doc2vec results above as both tentative and inviting. By
+                    reproducing some basic, even if outdated, expectations of modernist magazines,
+                    doc2vec seems to be capturing an aspect of magazine culture that discerns
+                    variations in magazine and genre. Much more testing is needed (with different
+                    datasets and different variations of the MJP corpus), but it works well for a
+                    general overview.</p>
+
+                <p>In my next post, I plan to continue using doc2vec to trace literary likeness
+                    between lines of poetry.</p>
+
+            </div>
+        </main>
+        <footer class="row">
+            <div class="column">William Reed Quinn</div>
+            <div class="column"><img class="logo" src="../images/logos/Twitter_Logo_Blue.png"
+                    alt="Twitter logo" />@wi_quinn</div>
+            <div class="column">
+                <img class="logo" src="../images/logos/GitHub-Mark-32px.png" alt="Github logo" />
+                <a href="https://github.com/billquinn/">billquinn</a>
+            </div>
+        </footer>
+        <!-- End page content -->
+    </body>
+</html>

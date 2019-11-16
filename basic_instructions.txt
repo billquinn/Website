@@ -1,0 +1,9 @@
+
+Host Local Server
+
+In terminal:
+	python -m http.server 8000
+
+
+Color Palette:
+	https://www.colorcombos.com/color-schemes/5/ColorCombo5.html
