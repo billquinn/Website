@@ -28,7 +28,7 @@ document.write('\
 \
 \
 <div class="w3-container">\
-<h3>William Reed Quinn</h3>\
+<h3><a href="/index.html">William Reed Quinn</a></h3>\
 </div>\
 \
 \
