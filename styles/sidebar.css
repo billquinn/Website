@@ -38,6 +38,6 @@ h3 {
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 600px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  nav.sidenav {padding-top: 15px;}
+  nav.sidenav a {font-size: 18px;}
 } 
