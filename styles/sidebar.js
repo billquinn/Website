@@ -22,7 +22,7 @@ document.write('\
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>\
 <link rel="stylesheet" href="/styles/sidebar.css"></link>\
 \
-<nav class="sidenav">\
+<nav class="sidebar">\
 <br></br>\
 <br></br>\
 \
