@@ -3,7 +3,7 @@ function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("myOverlay").style.display = "block";
 }
- 
+
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
@@ -35,7 +35,7 @@ document.write('\
 <div class="w3-bar-block">\
 <a href="/about/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About Me</a>\
 <a href="/cv/quinn-cv.pdf" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">CV</a>\
-<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Github (in the works)</a>\
+<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">GitHub</a>\
 </div>\
 \
 \
