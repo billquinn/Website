@@ -35,7 +35,7 @@ document.write('\
 <div class="w3-bar-block">\
 <a href="/about/index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">About Me</a>\
 <a href="/cv/quinn-cv.pdf" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">CV</a>\
-<a href="" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">GitHub</a>\
+<a href="https://github.com/billquinn/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">GitHub</a>\
 </div>\
 \
 \
